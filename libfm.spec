@@ -26,8 +26,8 @@ Helper library for pcmanfm.
 Summary:	Header files and libraries for libfm development
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do libfm
 Group:		Development/Libraries
-Provides:	libfm-gtk-devel
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	libfm-gtk-devel
 
 %description devel
 This package contains the header files needed to develop programs that
