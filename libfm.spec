@@ -9,6 +9,7 @@ Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
