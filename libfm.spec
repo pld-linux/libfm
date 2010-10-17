@@ -1,4 +1,5 @@
 Summary:	Helper library for pcmanfm
+Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
 Version:	0.1.12
 Release:	1
@@ -23,6 +24,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Helper library for pcmanfm.
 
+%description -l pl.UTF-8
+Biblioteka pomocnicza dla pcmanfm
+
 %package devel
 Summary:	Header files and libraries for libfm development
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do libfm
@@ -34,6 +38,10 @@ Provides:	libfm-gtk-devel
 This package contains the header files needed to develop programs that
 use these libfm.
 
+%description devel -l pl.UTF-8
+Pakiet zawiera pliki nagłówkowe potrzebne do rozwoju oprogramowania
+korzystającego z libfm.
+
 %package static
 Summary:	Static library for libfm development
 Summary(pl.UTF-8):	Biblioteka statyczna do libfm
@@ -43,6 +51,10 @@ Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 %description static
 This package contains the header files and libraries needed to develop
 programs that use these libfm.
+
+%description static -l pl.UTF-8
+Pakiet zawiera pliki nagłówkowe potrzebne do rozwoju oprogramowania
+korzystającego z libfm.
 
 %prep
 %setup -q
