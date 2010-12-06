@@ -1,0 +1,9 @@
+--- libfm-0.1.14/src/tests/Makefile.am~	2010-09-24 17:48:13.000000000 +0200
++++ libfm-0.1.14/src/tests/Makefile.am	2010-12-06 11:29:00.222702000 +0100
+@@ -19,5 +19,6 @@
+ fm_path_SOURCES = test-fm-path.c
+ fm_path_LDADD= \
+ 	$(GLIB_LIBS) \
++	-lgobject-2.0 \
+ 	../libfm.la \
+ 	$(NULL)
