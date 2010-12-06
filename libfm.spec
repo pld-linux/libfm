@@ -1,12 +1,13 @@
 Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
-Version:	0.1.12
+Version:	0.1.14
 Release:	1
-License:	GPL v2
+License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	6dbc9a30efb5ad0a2c7a0fc54b1ee57c
+# Source0-md5:	d55e51dced6bb9ef46665243b079761f
+Patch0:		%{name}-link.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,6 +59,7 @@ korzystającego z libfm.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure
@@ -83,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README TODO
+%doc AUTHORS TODO
 %{_sysconfdir}/xdg/libfm
 %attr(755,root,root) %{_bindir}/libfm-pref-apps
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofm.so
