@@ -16,6 +16,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
 Requires(post,postun):	shared-mime-info
 # in case someone want to split this package into smaller ones
