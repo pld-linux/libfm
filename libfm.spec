@@ -1,12 +1,12 @@
 Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
-Version:	0.1.15
-Release:	2.git3625952cea
+Version:	0.1.16
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	https://launchpad.net/ubuntu/+archive/primary/+files/%{name}_%{version}+git-3625952cea.orig.tar.gz
-# Source0-md5:	5a63ab70b24bb178b2cefb2ab49680cd
+Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
+# Source0-md5:	c09bce415ff6dc2dd835e28aeddeabe3
 Patch0:		%{name}-link.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf
@@ -62,8 +62,14 @@ Pakiet zawiera pliki nagłówkowe potrzebne do rozwoju oprogramowania
 korzystającego z libfm.
 
 %prep
-%setup -qn %{name}
+%setup -q
 %patch0 -p1
+
+# docs dir missing in tarball, but configure.ac references it
+install -d docs/reference/libfm
+touch docs/Makefile.in
+touch docs/reference/Makefile.in
+touch docs/reference/libfm/Makefile.in
 
 %build
 %configure
@@ -73,6 +79,10 @@ korzystającego z libfm.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# pkg-config present, so drop .la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm-gtk.la
 
 %find_lang %{name}
 
@@ -90,22 +100,24 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS TODO
-%{_sysconfdir}/xdg/libfm
-%attr(755,root,root) %{_bindir}/libfm-pref-apps
-%attr(755,root,root) %{_libdir}/libfm-gtk.so.0.0.0
-%attr(755,root,root) %ghost %{_libdir}/libfm-gtk.so.0
-%attr(755,root,root) %{_libdir}/libfm.so.0.0.0
-%attr(755,root,root) %ghost %{_libdir}/libfm.so.0
-%{_desktopdir}/libfm-pref-apps.desktop
+%dir /etc/xdg/libfm
+%config(noreplace) %verify(not md5 mtime size) /etc/xdg/libfm/libfm.conf
+%attr(755,root,root) %{_libdir}/libfm.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfm.so.1
 %{_datadir}/libfm
 %{_datadir}/mime/packages/libfm.xml
+
+# -gtk
+%config(noreplace) %verify(not md5 mtime size) /etc/xdg/libfm/pref-apps.conf
+%attr(755,root,root) %{_bindir}/libfm-pref-apps
+%attr(755,root,root) %{_libdir}/libfm-gtk.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfm-gtk.so.1
+%{_desktopdir}/libfm-pref-apps.desktop
 
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/libfm
-%{_libdir}/libfm-gtk.la
 %{_libdir}/libfm-gtk.so
-%{_libdir}/libfm.la
 %{_libdir}/libfm.so
 %{_pkgconfigdir}/libfm-gtk.pc
 %{_pkgconfigdir}/libfm.pc
