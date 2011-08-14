@@ -2,7 +2,7 @@ Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
 Version:	0.1.16
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
@@ -83,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 # pkg-config present, so drop .la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm-gtk.la
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/tt_RU
 
 %find_lang %{name}
 
