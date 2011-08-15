@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm-gtk.la
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/tt_RU
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/tt_RU
 
 %find_lang %{name}
 
