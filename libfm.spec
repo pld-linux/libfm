@@ -1,12 +1,16 @@
+#
+# Conditional build:
+%bcond_without	apidocs		# disable gtk-doc
+
 Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
-Version:	0.1.16
-Release:	2
+Version:	0.1.17
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	c09bce415ff6dc2dd835e28aeddeabe3
+# Source0-md5:	a97e03d973e6ac727f28d0934d6c9ad5
 Patch0:		%{name}-link.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf
@@ -14,7 +18,7 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.27.0
 BuildRequires:	gtk+2-devel
-BuildRequires:	gtk-doc
+%{?with_apidocs:BuildRequires:	gtk-doc}
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel
@@ -61,6 +65,18 @@ programs that use these libfm.
 Pakiet zawiera pliki nagłówkowe potrzebne do rozwoju oprogramowania
 korzystającego z libfm.
 
+%package apidocs
+Summary:	LIBFM API documentation
+Summary(pl.UTF-8):	Dokumentacja API LIBFM
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+LIBFM API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API LIBFM.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -72,12 +88,15 @@ touch docs/reference/Makefile.in
 touch docs/reference/libfm/Makefile.in
 
 %build
-%configure
+%configure \
+	%{!?with_apidocs:--enable-gtk-doc=no} \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
+	INSTALL_DATA="install -p -m 644" \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # pkg-config present, so drop .la
@@ -128,3 +147,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libfm-gtk.a
 %{_libdir}/libfm.a
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libfm
+%endif
