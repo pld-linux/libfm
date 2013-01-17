@@ -6,12 +6,13 @@ Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
 Version:	0.1.17
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
 # Source0-md5:	a97e03d973e6ac727f28d0934d6c9ad5
 Patch0:		%{name}-link.patch
+Patch1:		mate-desktop.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -80,6 +81,7 @@ Dokumentacja API LIBFM.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # docs dir missing in tarball, but configure.ac references it
 install -d docs/reference/libfm
@@ -103,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libfm-gtk.la
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/tt_RU
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/tt_RU
 
 %find_lang %{name}
 
