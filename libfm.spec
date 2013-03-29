@@ -13,16 +13,14 @@ Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
 # Source0-md5:	a5bc8b8291cf810c659bfb3af378b5de
 Patch1:		mate-desktop.patch
 URL:		http://pcmanfm.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	cairo-devel >= 1.8.0
+BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.27.0
 BuildRequires:	gtk+2-devel >= 2.18.0
 %{?with_apidocs:BuildRequires:	gtk-doc}
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libexif-devel
-BuildRequires:	libtool
 BuildRequires:	menu-cache-devel
 BuildRequires:	pango-devel >= 1.16.0
 BuildRequires:	pkgconfig
