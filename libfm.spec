@@ -5,25 +5,28 @@
 Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
-Version:	0.1.17
-Release:	2
+Version:	1.1.0
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.gz
-# Source0-md5:	a97e03d973e6ac727f28d0934d6c9ad5
-Patch0:		%{name}-link.patch
+# Source0-md5:	a5bc8b8291cf810c659bfb3af378b5de
 Patch1:		mate-desktop.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cairo-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.27.0
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+2-devel >= 2.18.0
 %{?with_apidocs:BuildRequires:	gtk-doc}
 BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libexif-devel
 BuildRequires:	libtool
 BuildRequires:	menu-cache-devel
+BuildRequires:	pango-devel >= 1.16.0
 BuildRequires:	pkgconfig
+BuildRequires:	vala >= 0.13.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	shared-mime-info
 Requires:	glib2 >= 1:2.27.0
@@ -80,24 +83,20 @@ Dokumentacja API LIBFM.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
-
-# docs dir missing in tarball, but configure.ac references it
-install -d docs/reference/libfm
-touch docs/Makefile.in
-touch docs/reference/Makefile.in
-touch docs/reference/libfm/Makefile.in
 
 %build
 %configure \
-	%{!?with_apidocs:--enable-gtk-doc=no} \
-	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}}
+	--enable-gtk-doc=%{!?with_apidocs:no}%{?with_apidocs:yes} \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
+	--enable-exif \
+	--enable-udisks \
+	--with-gtk=2
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
+%{__make} install -j1 \
 	INSTALL_DATA="install -p -m 644" \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -126,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/xdg/libfm
 %config(noreplace) %verify(not md5 mtime size) /etc/xdg/libfm/libfm.conf
 %attr(755,root,root) %{_libdir}/libfm.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfm.so.1
+%attr(755,root,root) %ghost %{_libdir}/libfm.so.3
 %{_datadir}/libfm
 %{_datadir}/mime/packages/libfm.xml
 
@@ -134,8 +133,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/xdg/libfm/pref-apps.conf
 %attr(755,root,root) %{_bindir}/libfm-pref-apps
 %attr(755,root,root) %{_libdir}/libfm-gtk.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfm-gtk.so.1
+%attr(755,root,root) %ghost %{_libdir}/libfm-gtk.so.3
 %{_desktopdir}/libfm-pref-apps.desktop
+%{_mandir}/man1/libfm-pref-apps.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -143,7 +143,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libfm-gtk.so
 %{_libdir}/libfm.so
 %{_pkgconfigdir}/libfm-gtk.pc
+%{_pkgconfigdir}/libfm-gtk3.pc
 %{_pkgconfigdir}/libfm.pc
+%{_includedir}/libfm-1.0
 
 %files static
 %defattr(644,root,root,755)
