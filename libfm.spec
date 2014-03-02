@@ -89,12 +89,13 @@ Dokumentacja API LIBFM.
 
 %build
 %configure \
+	--disable-silent-rules \
 	--enable-gtk-doc=%{!?with_apidocs:no}%{?with_apidocs:yes} \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
 	--enable-exif \
 	--enable-udisks \
 	--with-gtk=2
-%{__make} V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
