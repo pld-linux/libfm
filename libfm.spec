@@ -5,12 +5,12 @@
 Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
-Version:	1.2.0
+Version:	1.2.1
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
-# Source0-md5:	07d1361bc008db46b0fd4c775f5696de
+# Source0-md5:	9b4790594c2c80f440ce3238c5774d23
 Patch1:		mate-desktop.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	cairo-devel >= 1.8.0
@@ -153,7 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libfm-gtk.so
 %{_libdir}/libfm.so
 %{_pkgconfigdir}/libfm-gtk.pc
-%{_pkgconfigdir}/libfm-gtk3.pc
+#%%{_pkgconfigdir}/libfm-gtk3.pc
 %{_pkgconfigdir}/libfm.pc
 %{_includedir}/libfm-1.0
 
