@@ -15,7 +15,7 @@ Patch1:		mate-desktop.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	cairo-devel >= 1.8.0
 BuildRequires:	dbus-glib-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.27.0
 BuildRequires:	gtk+2-devel >= 2.18.0
 %{?with_apidocs:BuildRequires:	gtk-doc}
