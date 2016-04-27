@@ -6,7 +6,7 @@ Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
 Version:	1.2.1
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
@@ -76,6 +76,9 @@ Summary:	LIBFM API documentation
 Summary(pl.UTF-8):	Dokumentacja API LIBFM
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 LIBFM API documentation.
