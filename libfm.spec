@@ -140,6 +140,7 @@ Summary:	libfm-extra library
 Summary(pl.UTF-8):	Biblioteka libfm-extra
 Group:		Libraries
 Requires:	glib2 >= 1:2.27.0
+Conflicts:	libfm < 1.2.5
 
 %description extra
 libfm-extra library.
@@ -153,6 +154,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libfm-extra
 Group:		Development/Libraries
 Requires:	%{name}-extra = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.27.0
+Conflicts:	libfm-devel < 1.2.5
 
 %description extra-devel
 Header files for libfm-extra library.
@@ -165,6 +167,7 @@ Summary:	Static libfm-extra library
 Summary(pl.UTF-8):	Statyczna biblioteka libfm-extra
 Group:		Development/Libraries
 Requires:	%{name}-extra-devel = %{version}-%{release}
+Conflicts:	libfm-static < 1.2.5
 
 %description extra-static
 Static libfm-extra library.
