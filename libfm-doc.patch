@@ -1,9 +1,9 @@
---- libfm-1.2.5/src/base/fm-module.c.orig	2016-12-02 23:01:54.000000000 +0100
-+++ libfm-1.2.5/src/base/fm-module.c	2017-11-21 20:43:28.578710947 +0100
+--- libfm-1.3.2/src/base/fm-module.c~   2018-04-21 16:26:50.000000000 +0000
++++ libfm-1.3.2/src/base/fm-module.c    2022-11-09 18:18:00.327044633 +0000
 @@ -45,7 +45,7 @@
   * <example id="example-fm-dummy-h">
   * <title>Sample of fm-dummy.h</title>
-  * <programlisting>
+  * <programlisting><![CDATA[
 - * #include <libfm/fm.h>
 + * #include &lt;libfm/fm.h&gt;
   *

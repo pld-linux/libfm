@@ -11,12 +11,12 @@
 Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
-Version:	1.2.5
-Release:	2
+Version:	1.3.2
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
-# Source0-md5:	a1ba9ae5e920f38b647dd511edd6c807
+# Source0-md5:	c87a0ff41ae77825079b2f785ec0741e
 Patch0:		%{name}-doc.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	cairo-devel >= 1.8.0
@@ -242,6 +242,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libfm.so
 %{_includedir}/libfm-1.0/fm.h
+%{_includedir}/libfm-1.0/fm-action.h
 %{_includedir}/libfm-1.0/fm-actions.h
 %{_includedir}/libfm-1.0/fm-app-info.h
 %{_includedir}/libfm-1.0/fm-archiver.h
