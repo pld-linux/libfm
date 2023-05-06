@@ -32,9 +32,9 @@ BuildRequires:	libexif-devel
 BuildRequires:	pango-devel >= 1:1.16.0
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	vala >= 0.13.0
+BuildRequires:	vala >= 2:0.13.0
 BuildRequires:	xz
-Obsoletes:	lxshortcut
+Obsoletes:	lxshortcut < 0.1.3
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	shared-mime-info
 Requires:	%{name}-extra = %{version}-%{release}
@@ -227,7 +227,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{without extra_only}
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS TODO
+%doc AUTHORS NEWS README TODO
 %dir /etc/xdg/libfm
 %config(noreplace) %verify(not md5 mtime size) /etc/xdg/libfm/libfm.conf
 %attr(755,root,root) %{_libdir}/libfm.so.*.*.*
