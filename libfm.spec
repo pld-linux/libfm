@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
+%bcond_without	gtk3		# use GTK+ 3.x instead of 2.x
 %bcond_with	extra_only	# build only libfm-extra
 %bcond_with	bootstrap	# synonym for extra_only (to break libfm<>menu-cache loop)
 
@@ -12,7 +12,7 @@ Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
 Version:	1.3.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
