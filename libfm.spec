@@ -12,12 +12,14 @@ Summary:	Helper library for pcmanfm
 Summary(pl.UTF-8):	Biblioteka pomocnicza do pcmanfm
 Name:		libfm
 Version:	1.3.2
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}.tar.xz
 # Source0-md5:	c87a0ff41ae77825079b2f785ec0741e
 Patch0:		%{name}-doc.patch
+Patch1:		0001-fm_config_load_from_key_file-don-t-replace-string-va.patch
+Patch2:		0002-FIX-support-gcc14-Werror-incompatible-pointer-types.patch
 URL:		http://pcmanfm.sourceforge.net/
 BuildRequires:	cairo-devel >= 1.8.0
 BuildRequires:	dbus-glib-devel
@@ -176,6 +178,11 @@ Statyczna biblioteka libfm-extra.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+
+# Force regeneration of Vala sources
+%{__rm} src/actions/*.c
 
 %build
 %configure \
